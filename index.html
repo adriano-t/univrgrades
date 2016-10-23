@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript" src="main.js"></script>
+		<style>
+		* {
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			outline:none;
+		}
+		
+		p{
+			font-size: 12pt;
+			margin-right:140px;
+			display:inline;
+		}
+		
+		.final-grade{
+			color: blue;
+		}
+		
+		h1,h2,h3{
+			margin:0;
+			padding:0;
+		}
+		
+		.code {
+			padding: 2px 4px;
+			font-size: 90%;
+			color: #c7254e;
+			background-color: #f9f2f4;
+			border-radius: 4px;
+		}
+		
+		.help-box { 
+			margin-bottom: 10px;
+			margin-top: 10px;
+			border-radius: 3px;	
+			padding: 10px 10px 10px 15px;
+			background-repeat: no-repeat;
+			background-position: 10px 11px;
+			border: 1px solid;
+			color:#444;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255,255,255,0.4) inset;
+			-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255,255,255,0.4) inset;
+		}
+   
+		.help-box-info {
+			background-color: #cfe6fc; 
+			border-color: #a4c8f5; 	
+		}
+
+		.help-box-success {
+			background-color: #d2f7ad; 
+			border-color: #aedb2e; 	
+		}
+
+		.help-box-warning {
+			background-color: #fae7a2; 
+			border-color: #f5c558; 	
+		}
+
+		.help-box-error {
+			background-color: #ffd5af; 
+			border-color: #f8b472; 	
+		}
+
+		input[type="text"] { 
+			padding: 4px;
+			border: solid 3px #c9c9c9;
+			transition: border 0.3s;
+			transition: box-shadow 0.3s, border 0.3s;
+		}
+		input[type="text"]:focus,
+		input[type="text"].focus { 
+			box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+		}
+		
+		input[type="button"] { 
+		  display: inline-block;
+		  border-radius: 4px;
+		  background-color: #008CBA;
+		  border: none;
+		  color: #FFFFFF;
+		  text-align: center;
+		  font-size: 15px;
+		  padding: 5px 15px 5px  15px; 
+		  transition: all 0.1s;
+		  cursor: pointer; 
+		}
+		  
+		input[type="button"]:hover  { 
+		  background-color: #339DCB; 
+		}
+		
+		body{
+		  background-color: #f1f1f1; 
+		}
+		
+		hr{ 
+			border: 0;
+			height: 0; 
+			border-bottom: 1px dashed #ccc;
+			background: #999
+		}
+		
+		a { -webkit-transition: color .4s; transition: color .4s; color: #265C83; }
+
+		a:link, a:visited { color: #265C83; }
+
+		a:hover { color: #7FDBFF; }
+
+		a:active { -webkit-transition: color .3s; transition: color .3s; color: #007BE6; }
+		
+		textarea {
+		display:block;
+		  margin: 5px 10px 10px 0px;   
+		  height: 50px;
+		  width: 100%;
+		  -moz-border-bottom-colors: none;
+		  -moz-border-left-colors: none;
+		  -moz-border-right-colors: none;
+		  -moz-border-top-colors: none;
+		  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+		  border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+		  border-image: none;
+		  border-radius: 6px 6px 6px 6px;
+		  border-style: none solid solid none;
+		  border-width: medium 1px 1px medium;
+		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+		  color: #555555;
+		  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		  font-size: 1em;
+		  line-height: 1.4em;
+		  padding: 5px 8px;
+		  transition: background-color 0.2s ease 0s;
+		}
+
+
+		textarea:focus {
+			background: none repeat scroll 0 0 #FFFFFF;
+			outline-width: 0;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="help-box help-box-warning">
+		Vai nel <a href="https://univr.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do" >Libretto dei voti</a>,
+		premi <a class="code">Ctrl + A , Ctrl+C</a>, 
+		incollalo nella <a class="code">TextArea</a> sotto 
+		e premi <a class="code">Import</a>.
+		</div>
+		<div>
+			<textarea id="output" placeholder="Paste here..." ></textarea>
+			<input type="button" onclick="app.import()" value="Import" ></input>
+			<input type="button" onclick="app.export()" value="Export" ></input>
+		</div> 
+		<hr/>
+		<div id="container"> 
+			<input type="button" onclick="app.addEmptyGrade()" value="Add" ></input>
+			<input type="button" onclick="app.calculate()" value="Calculate" ></input>
+			<input type="button" onclick="app.saveGrades()" value="Save" ></input>
+			<div id="result" class="help-box help-box-success" style="display:none"></div>
+			<hr/>
+			<p>Name</p><p>Grade</p> <p>CFU</p>
+		</div>
+		<div id="grades"></div> 
+	</body>
+</html>
